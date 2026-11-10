@@ -123,14 +123,14 @@ app/
 - Google Maps API Key (para geolocalización)
 - Cuenta Wompi para pagos (opcional para desarrollo)
 
-## 🚀 Instalación y Configuración
+## 🚀 Configuración del Proyecto
 
-### 1. Clonar el repositorio
+### 1. Abrir en Android Studio
 
-```bash
-git clone https://github.com/tu-usuario/Print3DStore.git
-cd Print3DStore
-```
+1. Abrir Android Studio
+2. File → Open
+3. Seleccionar la carpeta `Print3DStore`
+4. Esperar sincronización de Gradle
 
 ### 2. Configurar Firebase
 
@@ -146,24 +146,19 @@ cd Print3DStore
 ### 3. Configurar Google Maps
 
 1. Obtener una API Key de [Google Cloud Console](https://console.cloud.google.com)
-2. Agregar la key en `local.properties`:
+2. Crear archivo `local.properties` en la raíz del proyecto
+3. Agregar la key:
    ```properties
+   sdk.dir=/ruta/al/Android/Sdk
    MAPS_API_KEY=TU_API_KEY_AQUI
    ```
 
-### 4. Compilar el proyecto
+### 4. Ejecutar la aplicación
 
-```bash
-./gradlew clean build
-```
-
-### 5. Ejecutar la aplicación
-
-```bash
-./gradlew installDebug
-```
-
-O desde Android Studio: `Run > Run 'app'`
+Desde Android Studio:
+1. Conectar dispositivo Android o iniciar emulador
+2. Click en `Run > Run 'app'`
+3. Seleccionar dispositivo destino
 
 ## 📦 Generación del APK
 
