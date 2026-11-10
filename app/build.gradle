@@ -1,8 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
-    id 'kotlin-kapt'
     id 'kotlin-parcelize'
 }
 
@@ -61,12 +59,12 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
     
-    // Firebase BOM
-    implementation platform('com.google.firebase:firebase-bom:32.7.0')
-    implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'com.google.firebase:firebase-storage-ktx'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    // Firebase BOM (Opcional - comentado para compilación básica)
+    // implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    // implementation 'com.google.firebase:firebase-auth-ktx'
+    // implementation 'com.google.firebase:firebase-firestore-ktx'
+    // implementation 'com.google.firebase:firebase-storage-ktx'
+    // implementation 'com.google.firebase:firebase-analytics-ktx'
     
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
@@ -75,14 +73,14 @@ dependencies {
     // Biometric
     implementation 'androidx.biometric:biometric:1.1.0'
     
-    // CameraX
-    implementation 'androidx.camera:camera-camera2:1.3.1'
-    implementation 'androidx.camera:camera-lifecycle:1.3.1'
-    implementation 'androidx.camera:camera-view:1.3.1'
+    // CameraX (Opcional)
+    // implementation 'androidx.camera:camera-camera2:1.3.1'
+    // implementation 'androidx.camera:camera-lifecycle:1.3.1'
+    // implementation 'androidx.camera:camera-view:1.3.1'
     
-    // Location Services
-    implementation 'com.google.android.gms:play-services-location:21.0.1'
-    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    // Location Services (Opcional)
+    // implementation 'com.google.android.gms:play-services-location:21.0.1'
+    // implementation 'com.google.android.gms:play-services-maps:18.2.0'
     
     // Image Loading - Coil
     implementation 'io.coil-kt:coil:2.5.0'

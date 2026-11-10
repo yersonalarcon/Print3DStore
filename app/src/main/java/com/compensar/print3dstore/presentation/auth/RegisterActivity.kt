@@ -7,14 +7,12 @@ import com.compensar.print3dstore.R
 import com.compensar.print3dstore.databinding.ActivityRegisterBinding
 import com.compensar.print3dstore.domain.model.User
 import com.compensar.print3dstore.domain.model.UserRole
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private val auth = FirebaseAuth.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
+    // private val auth = FirebaseAuth.getInstance() // Comentado para compilación sin Firebase
+    // private val firestore = FirebaseFirestore.getInstance()
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,21 +51,15 @@ class RegisterActivity : AppCompatActivity() {
         binding.progressBar.visibility = android.view.View.VISIBLE
         binding.btnRegister.isEnabled = false
         
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
-                    saveUserToFirestore(userId, fullName, email, role)
-                } else {
-                    binding.progressBar.visibility = android.view.View.GONE
-                    binding.btnRegister.isEnabled = true
-                    Toast.makeText(
-                        this,
-                        getString(R.string.error_register_failed),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+        // Simulación de registro exitoso para demostración
+        Toast.makeText(
+            this,
+            "Registro simulado exitoso. En producción se conectaría a Firebase.",
+            Toast.LENGTH_LONG
+        ).show()
+        
+        binding.progressBar.visibility = android.view.View.GONE
+        finish()
     }
     
     private fun validateInputs(fullName: String, email: String, password: String): Boolean {
@@ -100,43 +92,5 @@ class RegisterActivity : AppCompatActivity() {
             R.id.rbSeller -> UserRole.SELLER
             else -> UserRole.BUYER
         }
-    }
-    
-    private fun saveUserToFirestore(
-        userId: String,
-        fullName: String,
-        email: String,
-        role: UserRole
-    ) {
-        val user = User(
-            uid = userId,
-            email = email,
-            fullName = fullName,
-            role = role,
-            isActive = true,
-            createdAt = System.currentTimeMillis()
-        )
-        
-        firestore.collection("users")
-            .document(userId)
-            .set(user)
-            .addOnSuccessListener {
-                binding.progressBar.visibility = android.view.View.GONE
-                Toast.makeText(
-                    this,
-                    "Registro exitoso. Inicia sesión para continuar.",
-                    Toast.LENGTH_LONG
-                ).show()
-                finish()
-            }
-            .addOnFailureListener {
-                binding.progressBar.visibility = android.view.View.GONE
-                binding.btnRegister.isEnabled = true
-                Toast.makeText(
-                    this,
-                    "Error al guardar usuario: ${it.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
     }
 }

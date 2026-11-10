@@ -3,24 +3,21 @@ package com.compensar.print3dstore.presentation.auth
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import com.compensar.print3dstore.R
 import com.compensar.print3dstore.databinding.ActivityLoginBinding
 import com.compensar.print3dstore.domain.model.UserRole
 import com.compensar.print3dstore.presentation.admin.AdminMainActivity
 import com.compensar.print3dstore.presentation.buyer.BuyerMainActivity
 import com.compensar.print3dstore.presentation.seller.SellerMainActivity
-import com.google.firebase.auth.FirebaseAuth
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val auth = FirebaseAuth.getInstance()
+    // private val auth = FirebaseAuth.getInstance() // Comentado para compilación sin Firebase
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +34,8 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString().trim()
             
             if (validateInputs(email, password)) {
-                loginWithEmail(email, password)
+                // Navegación de demostración sin Firebase
+                navigateToMainActivity(UserRole.BUYER)
             }
         }
         
@@ -50,7 +48,6 @@ class LoginActivity : AppCompatActivity() {
         }
         
         binding.tvForgotPassword.setOnClickListener {
-            // TODO: Implementar recuperación de contraseña
             Toast.makeText(this, "Funcionalidad en desarrollo", Toast.LENGTH_SHORT).show()
         }
     }
@@ -75,29 +72,6 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
     
-    private fun loginWithEmail(email: String, password: String) {
-        binding.progressBar.visibility = android.view.View.VISIBLE
-        binding.btnLogin.isEnabled = false
-        
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                binding.progressBar.visibility = android.view.View.GONE
-                binding.btnLogin.isEnabled = true
-                
-                if (task.isSuccessful) {
-                    // TODO: Obtener rol del usuario desde Firestore
-                    // Por ahora navegamos según mock
-                    navigateToMainActivity(UserRole.BUYER)
-                } else {
-                    Toast.makeText(
-                        this,
-                        getString(R.string.error_login_failed),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-    }
-    
     private fun checkBiometricAvailability() {
         val biometricManager = BiometricManager.from(this)
         when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
@@ -117,7 +91,6 @@ class LoginActivity : AppCompatActivity() {
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    // TODO: Recuperar credenciales guardadas
                     Toast.makeText(
                         this@LoginActivity,
                         "Autenticación biométrica exitosa",

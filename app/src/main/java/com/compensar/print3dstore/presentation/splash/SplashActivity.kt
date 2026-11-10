@@ -8,12 +8,11 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.compensar.print3dstore.R
 import com.compensar.print3dstore.presentation.auth.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     
-    private val auth = FirebaseAuth.getInstance()
+    // private val auth = FirebaseAuth.getInstance() // Comentado para compilación sin Firebase
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,16 +24,8 @@ class SplashActivity : AppCompatActivity() {
     }
     
     private fun checkAuthAndNavigate() {
-        val currentUser = auth.currentUser
-        
-        val intent = if (currentUser != null) {
-            // Usuario ya autenticado, navegar a su activity principal
-            // TODO: Obtener rol y navegar según corresponda
-            Intent(this, LoginActivity::class.java)
-        } else {
-            Intent(this, LoginActivity::class.java)
-        }
-        
+        // Siempre navegar a Login (sin verificar Firebase)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
