@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- 3D Printer Icon Simple -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M40,20 L80,20 L80,40 L40,40 Z"/>
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M30,40 L90,40 L90,70 L30,70 Z"/>
+    <path
+        android:fillColor="@color/secondary_green"
+        android:pathData="M45,70 L75,70 L75,90 L45,90 Z"/>
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M50,50 C50,47 53,47 53,50 C53,53 50,53 50,50 Z"/>
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M67,50 C67,47 70,47 70,50 C70,53 67,53 67,50 Z"/>
+</vector>

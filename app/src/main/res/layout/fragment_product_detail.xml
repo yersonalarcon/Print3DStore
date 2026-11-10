@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background_primary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/ivProductImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:background="@color/neutral_200"
+            android:contentDescription="@string/product_detail"
+            tools:src="@drawable/ic_logo_splash"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Content Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ivProductImage">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_large">
+
+                <!-- Product Title -->
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Print3D.Headline2"
+                    android:textColor="@color/text_primary"
+                    tools:text="Dragón Articulado PLA"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- Price -->
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:textAppearance="@style/TextAppearance.Print3D.Price"
+                    android:textSize="24sp"
+                    tools:text="$45.000 COP"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:textAppearance="@style/TextAppearance.Print3D.Body"
+                    android:textColor="@color/text_secondary"
+                    tools:text="Impresión en alta definición con filamento PLA biodegradable premium."
+                    app:layout_constraintTop_toBottomOf="@id/tvPrice"/>
+
+                <!-- Customization Section -->
+                <TextView
+                    android:id="@+id/tvCustomizationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_l"
+                    android:text="@string/customization"
+                    android:textAppearance="@style/TextAppearance.Print3D.Body"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!-- Color Selector -->
+                <TextView
+                    android:id="@+id/tvColorLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:text="@string/color"
+                    android:textColor="@color/text_primary"
+                    app:layout_constraintTop_toBottomOf="@id/tvCustomizationTitle"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <Spinner
+                    android:id="@+id/spinnerColor"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_edit_text"
+                    app:layout_constraintTop_toTopOf="@id/tvColorLabel"
+                    app:layout_constraintStart_toEndOf="@id/tvColorLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="@dimen/spacing_m"/>
+
+                <!-- Fill Selector -->
+                <TextView
+                    android:id="@+id/tvFillLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:text="@string/fill"
+                    android:textColor="@color/text_primary"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerColor"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <Spinner
+                    android:id="@+id/spinnerFill"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_edit_text"
+                    app:layout_constraintTop_toTopOf="@id/tvFillLabel"
+                    app:layout_constraintStart_toEndOf="@id/tvFillLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="@dimen/spacing_m"/>
+
+                <!-- Add to Cart Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddToCart"
+                    style="@style/Widget.Print3D.Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/spacing_xl"
+                    android:text="@string/add_to_cart"
+                    app:icon="@drawable/ic_cart"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerFill"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

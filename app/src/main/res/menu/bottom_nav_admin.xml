@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Métricas"/>
+    
+    <item
+        android:id="@+id/nav_users"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/nav_users"/>
+    
+    <item
+        android:id="@+id/nav_moderation"
+        android:icon="@drawable/ic_products"
+        android:title="Moderación"/>
+</menu>

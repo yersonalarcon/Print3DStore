@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Print3D Store</string>
+    
+    <!-- Common -->
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="close">Cerrar</string>
+    <string name="loading">Cargando…</string>
+    <string name="error">Error</string>
+    <string name="success">Éxito</string>
+    <string name="search">Buscar</string>
+    <string name="filter">Filtrar</string>
+    
+    <!-- Authentication -->
+    <string name="welcome_print3d">¡Bienvenido a Print3D!</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Ingresar con Firebase</string>
+    <string name="register">Registrarse</string>
+    <string name="biometric_login">Acceso por Huella (Biometría)</string>
+    <string name="dont_have_account">¿No tienes cuenta? Regístrate aquí</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="select_role">Selecciona tu rol</string>
+    <string name="role_buyer">Comprador</string>
+    <string name="role_seller">Vendedor</string>
+    <string name="role_admin">Administrador</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_cart">Carrito</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_products">Productos</string>
+    <string name="nav_orders">Pedidos</string>
+    <string name="nav_users">Usuarios</string>
+    <string name="nav_dashboard">Panel</string>
+    <string name="nav_logout">Cerrar Sesión</string>
+    
+    <!-- Catalog -->
+    <string name="featured_products">Destacados 3D</string>
+    <string name="categories">Categorías</string>
+    <string name="articulated">Articulados</string>
+    <string name="decoration">Decoración</string>
+    <string name="props">Props</string>
+    <string name="product_detail">Detalle del Producto</string>
+    <string name="customization">Personalización:</string>
+    <string name="color">Color:</string>
+    <string name="fill">Relleno:</string>
+    <string name="material">Material:</string>
+    <string name="add_to_cart">Añadir al Carrito</string>
+    <string name="stock">Stock: %d uds</string>
+    <string name="price_cop">$%s COP</string>
+    
+    <!-- Cart -->
+    <string name="cart_title">Carrito &amp; Checkout</string>
+    <string name="delivery_address">Dirección de Entrega:</string>
+    <string name="change_on_map">[ Cambiar en Mapa ]</string>
+    <string name="select_gps">Dirección por GPS:</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="shipping">Envío:</string>
+    <string name="total">Total:</string>
+    <string name="proceed_payment">Proceder al Pago</string>
+    <string name="pay_with_wompi">Pagar con Wompi</string>
+    <string name="empty_cart">Tu carrito está vacío</string>
+    
+    <!-- Profile -->
+    <string name="my_profile">Mi Perfil</string>
+    <string name="recent_orders">Mis Pedidos Recientes</string>
+    <string name="order_status">Estado: %s</string>
+    <string name="configure_fingerprint">Configurar Huella Digital</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
+    <string name="edit_profile">Editar Perfil</string>
+    
+    <!-- Seller -->
+    <string name="seller_dashboard">Dashboard Vendedor</string>
+    <string name="sales_month">Ventas del Mes</string>
+    <string name="orders_to_ship">Pedidos por Despachar</string>
+    <string name="inventory_management">Gestión Inventario</string>
+    <string name="publish_product">Publicar Producto</string>
+    <string name="new_product">+ Nuevo Producto</string>
+    <string name="take_photo_camerax">Tomar foto con CameraX</string>
+    <string name="product_name">Nombre: [ Figura Coleccionable ]</string>
+    <string name="save_product">Guardar Producto</string>
+    <string name="status_fabricating">Fabricando</string>
+    
+    <!-- Admin -->
+    <string name="admin_console">Console Admin</string>
+    <string name="global_metrics">Métricas Globales</string>
+    <string name="users_control">Control Usuarios</string>
+    <string name="product_approval">Aprobación Prod.</string>
+    <string name="users_count">Usuarios: %d</string>
+    <string name="sellers_count">Vendedores: %d</string>
+    <string name="transactions">Transacciones: $%s</string>
+    <string name="pending_moderation">Moderación Pendiente</string>
+    <string name="approve">Aprobar</string>
+    <string name="reject">Rechazar</string>
+    <string name="user_state_active">Estado: Activo</string>
+    <string name="user_state_verified">Estado: Verificado</string>
+    
+    <!-- Order Status -->
+    <string name="status_pending">Pendiente</string>
+    <string name="status_paid">Pagado</string>
+    <string name="status_printing">En Impresión</string>
+    <string name="status_shipped">Enviado</string>
+    <string name="status_delivered">Entregado</string>
+    
+    <!-- Permissions -->
+    <string name="permission_camera_rationale">Necesitamos acceso a la cámara para tomar fotos de productos</string>
+    <string name="permission_location_rationale">Necesitamos tu ubicación para calcular el costo de envío</string>
+    <string name="permission_denied">Permiso denegado</string>
+    
+    <!-- Biometric -->
+    <string name="biometric_title">Autenticación Biométrica</string>
+    <string name="biometric_subtitle">Usa tu huella digital para ingresar</string>
+    <string name="biometric_description">Coloca tu dedo en el sensor</string>
+    <string name="biometric_negative">Usar contraseña</string>
+    
+    <!-- Errors -->
+    <string name="error_empty_field">Este campo no puede estar vacío</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_weak_password">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_login_failed">Error al iniciar sesión</string>
+    <string name="error_register_failed">Error al registrarse</string>
+    <string name="error_network">Error de conexión. Verifica tu internet</string>
+    <string name="error_load_products">Error al cargar productos</string>
+    
+    <!-- Legal -->
+    <string name="privacy_policy">Política de Privacidad</string>
+    <string name="terms_conditions">Términos y Condiciones</string>
+    <string name="accept_privacy">Acepto la Política de Privacidad y el tratamiento de datos (Ley 1581 de 2012)</string>
+    <string name="right_of_withdrawal">Derecho de Retracto (5 días hábiles - Ley 1480 de 2011)</string>
+</resources>
