@@ -2,7 +2,10 @@ package com.compensar.print3dstore.presentation.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.compensar.print3dstore.R
 import com.compensar.print3dstore.databinding.ActivityLoginBinding
@@ -14,10 +17,13 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 
+/**
+ * Activity para el Login de usuarios con Firebase Authentication
+ */
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    // private val auth = FirebaseAuth.getInstance() // Comentado para compilación sin Firebase
+    private val viewModel: AuthViewModel by viewModels()
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,30 +31,64 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         setupViews()
+        observeViewModel()
         checkBiometricAvailability()
     }
     
     private fun setupViews() {
+        // Botón de login
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
             
+            // Limpiar errores previos
+            binding.tilEmail.error = null
+            binding.tilPassword.error = null
+            
             if (validateInputs(email, password)) {
-                // Navegación de demostración sin Firebase
-                navigateToMainActivity(UserRole.BUYER)
+                viewModel.login(email, password)
             }
         }
         
+        // Botón biométrico
         binding.btnBiometric.setOnClickListener {
             showBiometricPrompt()
         }
         
+        // Link para registrarse
         binding.tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
         
+        // Link para recuperar contraseña
         binding.tvForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Funcionalidad en desarrollo", Toast.LENGTH_SHORT).show()
+            showPasswordResetDialog()
+        }
+    }
+    
+    private fun observeViewModel() {
+        viewModel.loginState.observe(this) { state ->
+            when (state) {
+                is AuthState.Loading -> {
+                    showLoading(true)
+                }
+                is AuthState.Success -> {
+                    showLoading(false)
+                    navigateToMainActivity(state.user.role)
+                }
+                is AuthState.Error -> {
+                    showLoading(false)
+                    Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
+                }
+                is AuthState.PasswordResetSent -> {
+                    showLoading(false)
+                    Toast.makeText(
+                        this,
+                        "Email de recuperación enviado. Revisa tu correo.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
     
@@ -72,6 +112,29 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
     
+    private fun showPasswordResetDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_password_reset, null)
+        val emailInput = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(
+            R.id.et_reset_email
+        )
+        
+        AlertDialog.Builder(this)
+            .setTitle("Recuperar Contraseña")
+            .setMessage("Ingresa tu email y te enviaremos un link para restablecer tu contraseña")
+            .setView(dialogView)
+            .setPositiveButton("Enviar") { _, _ ->
+                val email = emailInput?.text?.toString()?.trim()
+                if (!email.isNullOrEmpty() && 
+                    android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    viewModel.resetPassword(email)
+                } else {
+                    Toast.makeText(this, "Email inválido", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+    
     private fun checkBiometricAvailability() {
         val biometricManager = BiometricManager.from(this)
         when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
@@ -91,12 +154,14 @@ class LoginActivity : AppCompatActivity() {
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
+                    
+                    // Aquí podrías cargar credenciales guardadas de forma segura
+                    // Por ahora, solo mostramos éxito
                     Toast.makeText(
                         this@LoginActivity,
-                        "Autenticación biométrica exitosa",
+                        "Autenticación biométrica exitosa. Funcionalidad completa próximamente.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    navigateToMainActivity(UserRole.BUYER)
                 }
                 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
@@ -123,5 +188,11 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(intent)
         finish()
+    }
+    
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.btnLogin.isEnabled = !isLoading
+        binding.btnBiometric.isEnabled = !isLoading && binding.btnBiometric.alpha == 1f
     }
 }
